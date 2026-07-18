@@ -21,7 +21,7 @@ async def handle_github_events(
         # 1. 解析来自 GitHub 的 JSON 数据体
         payload = await request.json()
         # print(f"收到 payload: {payload}")
-        logger.info(f"收到 GitHub Webhook 事件: {x_github_event} | 数据: {payload}")
+        # logger.info(f"收到 GitHub Webhook 事件: {x_github_event} | 数据: {payload}")
     except Exception as e:
         logger.error(f"解析 JSON 失败: {str(e)}")
         raise HTTPException(
