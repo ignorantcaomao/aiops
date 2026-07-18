@@ -8,6 +8,7 @@ app = FastAPI(title="GitHub Webhook Listener")
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+# 定义一个 POST 路径来接收 GitHub Webhook 事件
 @app.post("/webhook/github-events")
 async def handle_github_events(
     request: Request,
@@ -19,7 +20,8 @@ async def handle_github_events(
     try:
         # 1. 解析来自 GitHub 的 JSON 数据体
         payload = await request.json()
-        print(f"收到 payload: {payload}")
+        # print(f"收到 payload: {payload}")
+        logger.info(f"收到 GitHub Webhook 事件: {x_github_event} | 数据: {payload}")
     except Exception as e:
         logger.error(f"解析 JSON 失败: {str(e)}")
         raise HTTPException(
